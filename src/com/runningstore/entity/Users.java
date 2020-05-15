@@ -1,5 +1,12 @@
 package com.runningstore.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Users {
 
 	private Integer userId;
@@ -7,6 +14,9 @@ public class Users {
 	private String fullName;
 	private String password;
 
+	@Column(name = "user_id")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getUserId() {
 		return userId;
 	}
@@ -15,6 +25,7 @@ public class Users {
 		this.userId = userId;
 	}
 
+	@Column
 	public String getEmail() {
 		return email;
 	}
@@ -23,6 +34,7 @@ public class Users {
 		this.email = email;
 	}
 
+	@Column(name = "full_name")
 	public String getFullName() {
 		return fullName;
 	}
@@ -31,6 +43,7 @@ public class Users {
 		this.fullName = fullName;
 	}
 
+	@Column
 	public String getPassword() {
 		return password;
 	}

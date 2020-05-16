@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 
@@ -31,9 +32,9 @@ public class UserDAOTest {
     public void testCreateUser() {
 
         Users user1 = new Users();
-        user1.setEmail("testuser002@test.com");
-        user1.setPassword("password");
-        user1.setFullName("Test User002");
+        user1.setEmail("testuser008@test.com");
+        user1.setPassword("password8");
+        user1.setFullName("Test User008");
         userDAO.create(user1);
 
         assertTrue(user1.getUserId() > 0);
@@ -52,15 +53,51 @@ public class UserDAOTest {
         Users user = new Users();
         user.setUserId(13);
         user.setEmail("testuser001@test.com");
-        user.setPassword("Updated_Password");
+        user.setPassword("Password_001");
         user.setFullName("Test User001");
 
         user = userDAO.update(user);
-        String expected = "Updated_Password";
+        String expected = "Password_001";
         String actual = user.getPassword();
 
         assertEquals(expected, actual);
 
+    }
+    
+    @Test
+    public void testGetUsers() {
+    	
+    	Integer userId = 13;
+    	Users user = userDAO.get(userId);
+    	
+    	assertNotNull(user);	
+    }
+    
+    @Test
+    public void testGetUsersNotFound() {
+    	
+    	Integer userId = 1;
+    	Users user = userDAO.get(userId);
+    	
+    	assertNull(user);
+    }
+    
+    @Test
+    public void deleteUsers() {
+    	
+    	Integer userId = 22;
+    	userDAO.delete(userId);
+    	
+    	Users user = userDAO.find(Users.class, userId);
+    	assertNull(user);
+    }
+    
+    @Test(expected = EntityNotFoundException.class)
+    public void deleteNonExistUser() {
+    	
+    	Integer userId = 1;
+    	userDAO.delete(userId);
+    	    	
     }
 
     @AfterClass

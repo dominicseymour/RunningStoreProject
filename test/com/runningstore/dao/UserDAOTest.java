@@ -2,6 +2,8 @@ package com.runningstore.dao;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
@@ -32,9 +34,9 @@ public class UserDAOTest {
     public void testCreateUser() {
 
         Users user1 = new Users();
-        user1.setEmail("testuser008@test.com");
-        user1.setPassword("password8");
-        user1.setFullName("Test User008");
+        user1.setEmail("testuser009@test.com");
+        user1.setPassword("password9");
+        user1.setFullName("Test User009");
         userDAO.create(user1);
 
         assertTrue(user1.getUserId() > 0);
@@ -83,7 +85,7 @@ public class UserDAOTest {
     }
     
     @Test
-    public void deleteUsers() {
+    public void testDeleteUsers() {
     	
     	Integer userId = 22;
     	userDAO.delete(userId);
@@ -93,11 +95,25 @@ public class UserDAOTest {
     }
     
     @Test(expected = EntityNotFoundException.class)
-    public void deleteNonExistUser() {
+    public void testDeleteNonExistUser() {
     	
     	Integer userId = 1;
     	userDAO.delete(userId);
     	    	
+    }
+    
+    @Test
+    public void testListAllUsers() {
+    	
+    	List<Users> allUsers = userDAO.listAll();
+    	assertTrue(allUsers.size() > 0);
+    }
+    
+    @Test
+    public void testCountAllUsers() {
+    	
+    	long count = userDAO.count();
+    	assertTrue(count == 5);
     }
 
     @AfterClass

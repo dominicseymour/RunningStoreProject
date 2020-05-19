@@ -11,7 +11,7 @@
 	&nbsp&nbsp&nbsp&nbsp&nbsp
 	<div>
 		<b>
-		<a href="user">Users</a> |
+		<a href="list_users">Users</a> |
 		<a href="categories">Categories</a> |
 		<a href="trainers">Trainers</a> |
 		<a href="customers">Customers</a> |

@@ -31,7 +31,7 @@
 				<tr>
 					<td colspan="2" align="center">
 						<input type="submit" value="Save">
-						<input type="button" value="Cancel">
+						<input type="button" value="Cancel" onclick="javascript:history.go(-1);">
 					</td>
 				</tr>								
 			</table>

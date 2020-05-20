@@ -115,6 +115,13 @@ public class UserDAOTest {
     	long count = userDAO.count();
     	assertTrue(count == 5);
     }
+    
+    @Test
+    public void testFindByEmail() {
+    	Users user = userDAO.findByEmail("bob@bob.com");
+    	assertNotNull(user);
+    	
+    }
 
     @AfterClass
     public static void teardownClass() {

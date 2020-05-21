@@ -79,9 +79,42 @@ public class UserServices {
 		int userId = Integer.parseInt(request.getParameter("id"));
 		Users user = userDAO.get(userId);
 		
+		if (user == null) {
+			
+			request.setAttribute("message", "Could not find user with id " + userId);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
+			dispatcher.forward(request, response);
+			
+		} else {
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("user_form.jsp");
 		request.setAttribute("user", user);
 		dispatcher.forward(request, response);
+		
+		}
+	}
+
+	public void updateUser() throws ServletException, IOException {
+
+		int userId = Integer.parseInt(request.getParameter("userId"));
+		String email = request.getParameter("email");
+		String fullName = request.getParameter("fullname");
+		String password = request.getParameter("password");
+		
+		Users userById = userDAO.get(userId);
+		Users userByEmail = userDAO.findByEmail(email);
+
+		if (userByEmail != null && userByEmail.getUserId() != userById.getUserId()) {
+			request.setAttribute("message", "Could not update user. User with email " + email + " already exists");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			
+			Users user = new Users(userId, email, fullName, password);
+			userDAO.update(user);
+			listUsers("User has been updated successfully");
+		}
+		
 	}
 
 }

@@ -16,17 +16,13 @@ import org.junit.Test;
 
 import com.runningstore.entity.Users;
 
-public class UserDAOTest {
+public class UserDAOTest extends BaseDAOTest {
 
-    private static EntityManagerFactory entityManagerFactory;
-    private static EntityManager entityManager;
     private static UserDAO userDAO;
 
     @BeforeClass
     public static void setupClass() {
-
-        entityManagerFactory = Persistence.createEntityManagerFactory("RunningStoreWebsite");
-        entityManager = entityManagerFactory.createEntityManager();
+    	BaseDAOTest.setupClass();
         userDAO = new UserDAO(entityManager);
     }
 
@@ -34,9 +30,9 @@ public class UserDAOTest {
     public void testCreateUser() {
 
         Users user1 = new Users();
-        user1.setEmail("testuser009@test.com");
-        user1.setPassword("password9");
-        user1.setFullName("Test User009");
+        user1.setEmail("testuser010@test.com");
+        user1.setPassword("passwor10");
+        user1.setFullName("Test User010");
         userDAO.create(user1);
 
         assertTrue(user1.getUserId() > 0);
@@ -67,7 +63,7 @@ public class UserDAOTest {
     }
     
     @Test
-    public void testGetUsers() {
+    public void testGetUser() {
     	
     	Integer userId = 13;
     	Users user = userDAO.get(userId);
@@ -76,7 +72,7 @@ public class UserDAOTest {
     }
     
     @Test
-    public void testGetUsersNotFound() {
+    public void testGetUserNotFound() {
     	
     	Integer userId = 1;
     	Users user = userDAO.get(userId);
@@ -85,7 +81,7 @@ public class UserDAOTest {
     }
     
     @Test
-    public void testDeleteUsers() {
+    public void testDeleteUser() {
     	
     	Integer userId = 22;
     	userDAO.delete(userId);
@@ -117,16 +113,15 @@ public class UserDAOTest {
     }
     
     @Test
-    public void testFindByEmail() {
+    public void testFindUserByEmail() {
     	Users user = userDAO.findByEmail("bob@bob.com");
     	assertNotNull(user);
     	
     }
 
     @AfterClass
-    public static void teardownClass() {
-        entityManager.close();
-        entityManagerFactory.close();
+    public static void teardownClass() throws Exception {
+        BaseDAOTest.tearDownAfterClass();
     }
 
 }

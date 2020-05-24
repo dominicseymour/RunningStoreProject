@@ -48,7 +48,7 @@
 
 	<script>
 		
-		function confirmDelete(userId) {
+		function confirmDelete(categoryId) {
 			
 			if (confirm("Are you sure you want to delete category with id " + categoryId + "?")) {
 				window.location = "delete_category?id=" + categoryId;

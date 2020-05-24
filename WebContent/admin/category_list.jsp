@@ -13,7 +13,7 @@
 	<div align="center">
 		<h2>Category Management</h2>
 	
-		<h3><a href="category_form.jsp">Create new Category</a></h3>
+		<h3><a href="category_form.jsp">Create New Category</a></h3>
 	</div>
 	
 	<c:if test="${message != null}">

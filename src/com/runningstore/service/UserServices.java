@@ -63,10 +63,9 @@ public class UserServices {
 
 		} else {
 
-			Users newUser = userDAO.create(new Users(email, fullName, password));
+			Users newUser = new Users(email, fullName, password);
 			userDAO.create(newUser);
 			listUsers("New user successfully created");
-
 		}
 	}
 

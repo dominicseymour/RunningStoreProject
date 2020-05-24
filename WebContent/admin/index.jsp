@@ -19,7 +19,7 @@
 		<b>
 		<a href="create_trainer">New Trainer</a> &nbsp
 		<a href="user_form.jsp">New User</a> &nbsp
-		<a href="create_category">New Category</a> &nbsp
+		<a href="category_form.jsp">New Category</a> &nbsp
 		<a href="create_customer">New Customer</a> &nbsp
 		</b>
 	</div>

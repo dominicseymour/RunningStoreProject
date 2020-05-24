@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.runningstore.dao.CategoryDAO;
 import com.runningstore.dao.UserDAO;
 import com.runningstore.entity.Category;
+import com.runningstore.entity.Users;
 
 public class CategoryServices {
 	
@@ -45,6 +46,22 @@ public class CategoryServices {
 	
 	public void listCategory() throws ServletException, IOException {
 		listCategory(null);
+	}
+
+	public void createCategory() throws ServletException, IOException {
+		
+		String name = request.getParameter("name");
+		
+		if (categoryDAO.findByName(name) != null) {
+			String errorMessage = "Could not create category. A category with name " + name + " already exists";
+			request.setAttribute("message", errorMessage);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		Category newCategory = new Category(name);				
+		categoryDAO.create(newCategory);
+		listCategory("New category successfully created");
 	}
 
 }

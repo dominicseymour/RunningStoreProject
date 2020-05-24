@@ -78,6 +78,13 @@ public class CategoryDAOTest extends BaseDAOTest {
 		assertTrue(count == 4);
 	}
 	
+	@Test
+    public void testFindCategoryByName() {
+    	Category category = categoryDAO.findByName("Road");
+    	assertNotNull(category);
+    	
+    }
+	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		BaseDAOTest.tearDownAfterClass();

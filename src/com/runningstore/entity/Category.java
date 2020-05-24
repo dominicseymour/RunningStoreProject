@@ -16,11 +16,12 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(name = "category", catalog = "runningstoredb", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 @NamedQueries({
 	@NamedQuery(name="Category.findAll", query="SELECT c from Category c ORDER BY c.name"),
 	@NamedQuery(name="Category.countAll", query="SELECT COUNT(c) FROM Category c"),
+	@NamedQuery(name="Category.findByName", query="SELECT c from Category c WHERE c.name = :name")
 })
-@Table(name = "category", catalog = "runningstoredb", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Category implements java.io.Serializable {
 
 	private Integer categoryId;

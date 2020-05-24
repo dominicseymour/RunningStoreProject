@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Create new user</title>
+<title>Create New User</title>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp"/>

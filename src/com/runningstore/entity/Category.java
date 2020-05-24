@@ -24,6 +24,7 @@ import javax.persistence.UniqueConstraint;
 })
 public class Category implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer categoryId;
 	private String name;
 	private Set<Trainer> trainers = new HashSet<Trainer>(0);
@@ -32,6 +33,12 @@ public class Category implements java.io.Serializable {
 	}
 
 	public Category(String name) {
+		this.name = name;
+	}
+
+	public Category(Integer categoryId, String name) {
+		super();
+		this.categoryId = categoryId;
 		this.name = name;
 	}
 

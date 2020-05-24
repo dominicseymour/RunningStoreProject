@@ -5,7 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Create New Category</title>
+<title>
+	<c:if test="${category != null}">
+		Edit Category
+	</c:if>
+	<c:if test="${category == null}">
+		Create New Category
+	</c:if>
+</title>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp"/>
@@ -29,19 +36,18 @@
 		<c:if test="${category == null}">
 			<form action="create_category" method="post" onsubmit="return validateFormInput()">
 		</c:if>
-			<table>
-				<tr>
-					<td align="right">Name:</td>
-					<td align="left"><input type="text" id="name" name="name" size="20" value="${category.name}"></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<input type="submit" value="Save">
-						<input type="button" value="Cancel" onclick="javascript:history.go(-1);">
-					</td>
-				</tr>								
-			</table>
-		</form>
+		<table>
+			<tr>
+				<td align="right">Name:</td>
+				<td align="left"><input type="text" id="name" name="name" size="20" value="${category.name}"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" value="Save">
+					<input type="button" value="Cancel" onclick="javascript:history.go(-1);">
+			</td>
+			</tr>								
+		</table>
 	</div>
 	
 	<jsp:directive.include file="footer.jsp"/>

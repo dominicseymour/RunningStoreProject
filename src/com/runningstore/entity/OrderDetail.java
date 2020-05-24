@@ -18,6 +18,7 @@ import javax.persistence.Table;
 @Table(name = "order_detail", catalog = "runningstoredb")
 public class OrderDetail implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private OrderDetailId id;
 	private Trainer trainer;
 	private TrainerOrder trainerOrder;

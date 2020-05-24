@@ -28,6 +28,7 @@
 				<th>Index</th>
 				<th>Id</th>
 				<th>Name</th>
+				<th>Action</th>
 			</tr>		
 			<c:forEach var="category" items="${categoryList}" varStatus="status">
 				<tr>
@@ -35,7 +36,7 @@
 					<td>${category.categoryId}</td>					
 					<td>${category.name}</td>					
 					<td>
-						<a href="edit_category?id=${user.userId}">Edit</a> &nbsp;
+						<a href="edit_category?id=${category.categoryId}">Edit</a> &nbsp;
 						<a href="javascript:confirmDelete(${category.categoryId})">Delete</a>
 					</td>															
 				</tr>

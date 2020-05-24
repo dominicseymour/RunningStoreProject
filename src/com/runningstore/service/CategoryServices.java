@@ -64,4 +64,47 @@ public class CategoryServices {
 		listCategory("New category successfully created");
 	}
 
+	public void editCategory() throws ServletException, IOException {
+		
+		int categoryId = Integer.parseInt(request.getParameter("id"));
+		Category category = categoryDAO.get(categoryId);
+		String destinationPage = "category_form.jsp";
+		
+		if (category == null) {
+
+			destinationPage = "message.jsp";
+			request.setAttribute("message", "Could not find category with id " + categoryId);
+
+		} else {
+
+			request.setAttribute("category", category);
+
+		}
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher(destinationPage);
+		dispatcher.forward(request, response);
+	}
+
+	public void updateCategory() throws ServletException, IOException {
+		
+		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+		String name = request.getParameter("name");
+
+		Category categoryById = categoryDAO.get(categoryId);
+		Category categoryByName = categoryDAO.findByName(name);
+		
+		/* If the name exists and it does not belong to the category being edited then show error */
+		if (categoryByName != null && categoryByName.getCategoryId() != categoryById.getCategoryId()) {
+			request.setAttribute("message", "Could not update category. Category with name " + name + " already exists");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
+			dispatcher.forward(request, response);
+		} else {
+
+			Category category = new Category(categoryId, name);
+			categoryDAO.update(category);
+			listCategory("Category has been updated successfully");
+		}
+
+	}
+
 }

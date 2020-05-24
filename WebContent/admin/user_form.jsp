@@ -5,7 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Create New User</title>
+<title>
+	<c:if test="${user != null}">
+		Edit User
+	</c:if>
+	<c:if test="${user == null}">
+		Create New User
+	</c:if>
+</title>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp"/>

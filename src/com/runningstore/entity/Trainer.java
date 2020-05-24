@@ -25,6 +25,7 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "trainer", catalog = "runningstoredb", uniqueConstraints = @UniqueConstraint(columnNames = "brand"))
 public class Trainer implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer trainerId;
 	private Category category;
 	private String brand;

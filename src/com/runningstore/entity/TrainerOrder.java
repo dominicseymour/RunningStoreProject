@@ -24,6 +24,7 @@ import javax.persistence.TemporalType;
 @Table(name = "trainer_order", catalog = "runningstoredb")
 public class TrainerOrder implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer orderId;
 	private Customer customer;
 	private Date orderDate;

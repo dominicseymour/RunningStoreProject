@@ -18,25 +18,21 @@ public class UserServices {
 
 	private HttpServletRequest request;
 	private HttpServletResponse response;
-
-	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;
 	private UserDAO userDAO;
 
-	public UserServices(HttpServletRequest request, HttpServletResponse response) {
+	public UserServices(EntityManager entityManager, HttpServletRequest request, HttpServletResponse response) {
 
 		this.request = request;
 		this.response = response;
-
-		entityManagerFactory = Persistence.createEntityManagerFactory("RunningStoreWebsite");
-		entityManager = entityManagerFactory.createEntityManager();
+		this.entityManager = entityManager;
 		userDAO = new UserDAO(entityManager);
 	}
 
 	public void listUsers(String message) throws ServletException, IOException {
 
 		List<Users> usersList = userDAO.listAll();
-		request.setAttribute("UsersList", usersList);
+		request.setAttribute("usersList", usersList);
 
 		if (message != null) {
 

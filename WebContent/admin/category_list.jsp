@@ -5,15 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Manage Users - Running Trainer Outlet Administration</title>
+<title>Manage Categories - Running Trainer Outlet Administration</title>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp"/>
 	
 	<div align="center">
-		<h2>User Management</h2>
+		<h2>Category Management</h2>
 	
-		<h3><a href="user_form.jsp">Create new User</a></h3>
+		<h3><a href="category_form.jsp">Create new Category</a></h3>
 	</div>
 	
 	<c:if test="${message != null}">
@@ -27,19 +27,16 @@
 			<tr>
 				<th>Index</th>
 				<th>Id</th>
-				<th>Email</th>
-				<th>Full Name</th>
-				<th>Actions</th>
+				<th>Name</th>
 			</tr>		
-			<c:forEach var="user" items="${usersList}" varStatus="status">
+			<c:forEach var="category" items="${categoryList}" varStatus="status">
 				<tr>
 					<td>${status.index + 1}</td>
-					<td>${user.userId}</td>					
-					<td>${user.email}</td>					
-					<td>${user.fullName}</td>					
+					<td>${category.categoryId}</td>					
+					<td>${category.name}</td>					
 					<td>
-						<a href="edit_user?id=${user.userId}">Edit</a> &nbsp;
-						<a href="javascript:confirmDelete(${user.userId})">Delete</a>
+						<a href="edit_category?id=${user.userId}">Edit</a> &nbsp;
+						<a href="javascript:confirmDelete(${category.categoryId})">Delete</a>
 					</td>															
 				</tr>
 			</c:forEach>											
@@ -52,8 +49,8 @@
 		
 		function confirmDelete(userId) {
 			
-			if (confirm("Are you sure you want to delete user with id " + userId + "?")) {
-				window.location = "delete_user?id=" + userId;
+			if (confirm("Are you sure you want to delete category with id " + categoryId + "?")) {
+				window.location = "delete_category?id=" + categoryId;
 			}
 		}
 	

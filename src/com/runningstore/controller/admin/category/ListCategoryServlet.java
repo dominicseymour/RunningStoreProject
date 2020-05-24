@@ -1,31 +1,27 @@
-package com.runningstore.controller.admin;
+package com.runningstore.controller.admin.category;
 
 import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.runningstore.entity.Users;
-import com.runningstore.service.UserServices;
+import com.runningstore.controller.admin.BaseServlet;
+import com.runningstore.service.CategoryServices;
 
-@WebServlet("/admin/list_users")
-public class ListUsersServlet extends HttpServlet {
+@WebServlet("/admin/list_category")
+public class ListCategoryServlet extends BaseServlet {
 	
 	private static final long serialVersionUID = 1L;
        
-    public ListUsersServlet() {
+    public ListCategoryServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		UserServices userServices = new UserServices(request, response);
-		userServices.listUsers();
+		CategoryServices categoryServices = new CategoryServices(entityManager, request, response);
+		categoryServices.listCategory();
 	}
-
 }

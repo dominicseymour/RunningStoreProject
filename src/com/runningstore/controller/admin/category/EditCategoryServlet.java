@@ -1,6 +1,6 @@
 package com.runningstore.controller.admin.category;
 
-import com.runningstore.controller.admin.BaseServlet;
+import com.runningstore.controller.BaseServlet;
 import com.runningstore.service.CategoryServices;
 
 import java.io.IOException;

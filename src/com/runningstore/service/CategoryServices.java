@@ -118,15 +118,30 @@ public class CategoryServices {
 	public void deleteCategory() throws ServletException, IOException {
 
 		int categoryId = Integer.parseInt(request.getParameter("id"));
+		String message;
+		Category category = categoryDAO.get(categoryId);
 		
-		if (categoryDAO.get(categoryId) == null) {
-			request.setAttribute("message", "Could not find category with ID " + categoryId + ", or it might have been deleted by another admin.");
+		if (category == null) {
+			message = "Could not find category with ID " + categoryId + ", or it might have been deleted by another admin.";
+			request.setAttribute("message", message);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
 			dispatcher.forward(request, response);
-		} else {
-			categoryDAO.delete(categoryId);
-			listCategory("Category has been deleted successfully");
-		}
+			return;
+		} 
+		
+		/*
+		 * TrainerDAO trainerDAO = new TrainerDAO(); long numberOfTrainers =
+		 * trainerDAO.countByCategory(categoryId);
+		 * 
+		 * if (numberOfTrainers > 0) { message = "Could not delete the category (ID: " +
+		 * categoryId + ") because it currently contains some trainers."; } else {
+		 * categoryDAO.delete(categoryId); message =
+		 * "Category has been deleted successfully"; }
+		 */
+
+		categoryDAO.delete(categoryId);
+		message = "Category has been deleted successfully";
+		listCategory(message);
 	}
 
 }

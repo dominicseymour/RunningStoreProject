@@ -1,4 +1,4 @@
-package com.runningstore.controller.admin;
+package com.runningstore.controller;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

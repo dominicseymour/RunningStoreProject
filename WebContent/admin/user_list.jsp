@@ -6,12 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Manage Users - Running Trainer Outlet Administration</title>
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 	<jsp:directive.include file="header.jsp"/>
 	
 	<div align="center">
-		<h2>User Management</h2>
+		<h2 class="page_heading">User Management</h2>
 	
 		<h3><a href="user_form.jsp">Create new User</a></h3>
 	</div>

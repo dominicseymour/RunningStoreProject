@@ -5,12 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Running Trainer Outlet Administration</title>
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 	<jsp:directive.include file="header.jsp"/>
 
 	<div align="center">
-		<h2>Administrative Dashboard</h2>
+		<h2 class="page_heading">Administrative Dashboard</h2>
 	</div>
 	
 	<hr width="50%" />	

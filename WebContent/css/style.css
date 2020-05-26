@@ -98,3 +98,10 @@ input {
 	font-style : italic;
 	color : blue;
 }
+
+.error {
+	
+	color : red;
+	margin : 5px;
+	font-weight : bold;
+}

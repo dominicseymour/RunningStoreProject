@@ -4,16 +4,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>
-	<c:if test="${user != null}">
-		Edit User
-	</c:if>
-	<c:if test="${user == null}">
-		Create New User
-	</c:if>
-</title>
-<link rel="stylesheet" href="../css/style.css">
+	<meta charset="UTF-8">
+	<title>
+		<c:if test="${user != null}">
+			Edit User
+		</c:if>
+		<c:if test="${user == null}">
+			Create New User
+		</c:if>
+	</title>
+	<link rel="stylesheet" href="../css/style.css">
+	<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>	
 </head>
 <body>
 	<jsp:directive.include file="header.jsp"/>
@@ -31,11 +33,11 @@
 	
 	<div align="center">
 		<c:if test="${user != null}">
-			<form action="update_user" method="post" onsubmit="return validateFormInput()">
+			<form action="update_user" method="post" id="userForm">
 			<input type="hidden" name="userId" value="${user.userId}">
 		</c:if>
 		<c:if test="${user == null}">
-			<form action="create_user" method="post" onsubmit="return validateFormInput()">
+			<form action="create_user" method="post" id="userForm">
 		</c:if>
 			<table class="form">
 				<tr>
@@ -54,7 +56,7 @@
 					<td colspan="2" align="center"> </br>
 						<button type="submit">Save</button>
 						&nbsp;&nbsp;&nbsp;
-						<button onclick="javascript:history.go(-1);">Cancel</button>
+						<button type="button" id="cancelButton">Cancel</button>
 					</td>
 				</tr>								
 			</table>
@@ -66,33 +68,34 @@
 
 <script type="text/javascript">
 
-	function validateFormInput() {
+	$(document).ready(function () {
+		$("#userForm").validate({
+			rules : {
+				email : {
+					required : true,
+					email : true
+				},
+				
+				fullname : "required",
+				password : "required",
+			},
+			
+			messages : {
+				email : {
+					required : "Please enter email",
+					email: "Please enter a valid email"
+				},
+
+				fullname : "Please enter fullname",
+				password : "Please enter password"
+			},
+		});
 		
-		var email = document.getElementById("email");
+		$("button#cancelButton").click(function() {
+			window.history.back();	
+		});
 		
-		if (email.value.length == 0) {
-			alert("Email is required");
-			email.focus();
-			return false;
-		}
-		
-		var fullname = document.getElementById("fullname");
-		
-		if (fullname.value.length == 0) {
-			alert("Fullname is required");
-			fullname.focus();
-			return false;
-		}
-		var password = document.getElementById("password");
-		
-		if (password.value.length == 0) {
-			alert("Password is required");
-			password.focus();
-			return false;
-		}
-		
-		return true;
-	}
+	});
 
 </script>
 

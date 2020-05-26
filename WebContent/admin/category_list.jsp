@@ -4,9 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Manage Categories - Running Trainer Outlet Administration</title>
-<link rel="stylesheet" href="../css/style.css">
+	<meta charset="UTF-8">
+	<title>Manage Categories - Running Trainer Outlet Administration</title>
+	<link rel="stylesheet" href="../css/style.css">
+	<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>	
 </head>
 <body>
 	<jsp:directive.include file="header.jsp"/>
@@ -38,7 +40,7 @@
 					<td>${category.name}</td>					
 					<td>
 						<a href="edit_category?id=${category.categoryId}">Edit</a> &nbsp;
-						<a href="javascript:confirmDelete(${category.categoryId})">Delete</a>
+						<a href="javascript:void(0);" id="${category.categoryId}" class="delete_link">Delete</a>
 					</td>															
 				</tr>
 			</c:forEach>											
@@ -48,6 +50,17 @@
 	<jsp:directive.include file="footer.jsp"/>
 
 	<script>
+	
+	$(document).ready(function () {
+		$(".delete_link").each(function () {
+			$(this).on("click", function () {
+				categoryId = $(this).attr("id"); 
+				if (confirm("Are you sure you want to delete category with id " + categoryId + "?")) {
+					window.location = "delete_category?id=" + categoryId;
+				}
+			});
+		});		
+	});
 		
 		function confirmDelete(categoryId) {
 			

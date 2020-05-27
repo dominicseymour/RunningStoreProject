@@ -1,4 +1,6 @@
-	
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <div align="center">
 	<div>
 		<img src="../images/admin_logo.png"/>
@@ -6,7 +8,7 @@
 	</div>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<div>
-		Welcome, Admin | <a href="logout">Logout</a>
+		Welcome, <c:out value="${sessionScope.user_email}"></c:out> | <a href="logout">Logout</a>
 		<br/><br/>
 	</div>
 	<div id="header_menu">

@@ -137,7 +137,9 @@ public class UserServices {
 		String password = request.getParameter("password");
 		
 		if (!userDAO.checkLogin(email, password)) {
-			System.out.println("User not authenticated.");	
+			request.setAttribute("message", "Login failed.");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
 		} else {
 			request.getSession().setAttribute("user_email", email);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/");

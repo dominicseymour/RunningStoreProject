@@ -1,6 +1,7 @@
 package com.runningstore.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -59,6 +60,16 @@ public class JpaDAO<E> {
     	
     	Query query = entityManager.createNamedQuery(queryName);
     	query.setParameter(paramName, paramValue);
+    	return query.getResultList();
+    }
+    
+    public List<E> findWithNamedQuery(String queryName, Map<String, Object> parameters) {
+    	
+    	Query query = entityManager.createNamedQuery(queryName);
+    	for (String parameter : parameters.keySet()) {
+        	query.setParameter(parameter, parameters.get(parameter));
+    	}
+
     	return query.getResultList();
     }
     

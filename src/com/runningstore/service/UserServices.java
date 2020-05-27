@@ -130,5 +130,19 @@ public class UserServices {
 			listUsers("User successfully deleted");
 		}
 	}
+	
+	public void login() throws ServletException, IOException {
+		
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
+		if (!userDAO.checkLogin(email, password)) {
+			System.out.println("User not authenticated.");	
+		} else {
+			request.getSession().setAttribute("user_email", email);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/");
+			dispatcher.forward(request, response);
+		}
+	}
 
 }

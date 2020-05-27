@@ -26,4 +26,14 @@ public class AdminHomeServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	
+
 }

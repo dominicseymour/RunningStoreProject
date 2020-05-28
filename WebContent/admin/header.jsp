@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <div align="center">
 	<div>
-		<img src="../images/admin_logo.png"/>
-	
+		<img src="../images/admin_logo.png"/>	
 	</div>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<div>

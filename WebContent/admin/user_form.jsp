@@ -77,7 +77,10 @@
 				},
 				
 				fullname : "required",
-				password : "required",
+				
+				<c:if test="${user == null}">
+				password: "required"
+				</c:if>
 			},
 			
 			messages : {

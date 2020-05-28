@@ -59,6 +59,7 @@ public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users>  {
     public boolean checkLogin(String email, String password) {
     	
     	Map<String, Object> parameters = new HashMap<>();
+    	String encryptedPassword = HashGenerator.generateMD5(password);
     	parameters.put("email", email);
     	parameters.put("password", password);
     	

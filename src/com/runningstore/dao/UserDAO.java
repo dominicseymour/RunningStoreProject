@@ -16,6 +16,8 @@ public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users>  {
 
     @Override
     public Users create(Users user) {
+    	String encryptedPassword = HashGenerator.generateMD5(user.getPassword());
+		user.setPassword(encryptedPassword);
         return super.create(user);
     }
 

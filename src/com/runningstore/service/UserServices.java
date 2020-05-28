@@ -18,14 +18,12 @@ public class UserServices {
 
 	private HttpServletRequest request;
 	private HttpServletResponse response;
-	private EntityManager entityManager;
 	private UserDAO userDAO;
 
 	public UserServices(EntityManager entityManager, HttpServletRequest request, HttpServletResponse response) {
 
 		this.request = request;
 		this.response = response;
-		this.entityManager = entityManager;
 		userDAO = new UserDAO(entityManager);
 	}
 
@@ -81,7 +79,8 @@ public class UserServices {
 			request.setAttribute("message", "Could not find user with id " + userId);
 
 		} else {
-
+			
+			user.setPassword(null);
 			request.setAttribute("user", user);
 
 		}

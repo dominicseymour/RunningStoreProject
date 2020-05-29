@@ -23,7 +23,8 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "trainer", catalog = "runningstoredb", uniqueConstraints = @UniqueConstraint(columnNames = "brand"))
 @NamedQueries({
 	@NamedQuery(name="Trainer.findAll", query="SELECT t from Trainer t ORDER BY t.brand"),
-	@NamedQuery(name="Trainer.findByModel", query="SELECT t from Trainer t WHERE t.model = :model")
+	@NamedQuery(name="Trainer.findByModel", query="SELECT t from Trainer t WHERE t.model = :model"),
+	@NamedQuery(name="Trainer.countAll", query="SELECT COUNT(t) FROM Trainer t"),
 })
 
 public class Trainer implements java.io.Serializable {

@@ -146,6 +146,13 @@ public class TrainerDAOTest extends BaseDAOTest {
 		assertNull(trainer);
 	}
 	
+	@Test
+	public void testCountAllTrainers() {
+		
+		long count = trainerDAO.count();
+		assertTrue(count == 2);
+	}
+	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		BaseDAOTest.tearDownAfterClass();

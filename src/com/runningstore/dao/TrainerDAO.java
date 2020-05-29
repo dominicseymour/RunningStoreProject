@@ -50,8 +50,7 @@ public class TrainerDAO extends JpaDAO<Trainer> implements GenericDAO<Trainer> {
 
 	@Override
 	public long count() {
-		// TODO Auto-generated method stub
-		return 0;
+		return super.countWithNamedQuery("Trainer.countAll");
 	}
 
 	

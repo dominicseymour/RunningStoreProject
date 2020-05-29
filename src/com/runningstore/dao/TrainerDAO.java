@@ -24,8 +24,7 @@ public class TrainerDAO extends JpaDAO<Trainer> implements GenericDAO<Trainer> {
 	}
 
 	@Override
-	public Trainer get(Object trainerId) {
-		
+	public Trainer get(Object trainerId) {		
 		return super.find(Trainer.class, trainerId);
 	}
 
@@ -37,6 +36,16 @@ public class TrainerDAO extends JpaDAO<Trainer> implements GenericDAO<Trainer> {
 	@Override
 	public List<Trainer> listAll() {
 		return super.findWithNamedQuery("Trainer.findAll");
+	}
+	
+	public Trainer findByModel(String model) {
+		
+		List<Trainer> trainers = super.findWithNamedQuery("Trainer.findByModel", "model", model);
+		if (trainers != null && trainers.size() > 0) {
+    		return trainers.get(0);
+    	}
+    	
+    	return null;
 	}
 
 	@Override

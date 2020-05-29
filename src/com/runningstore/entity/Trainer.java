@@ -22,7 +22,8 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "trainer", catalog = "runningstoredb", uniqueConstraints = @UniqueConstraint(columnNames = "brand"))
 @NamedQueries({
-	@NamedQuery(name="Trainer.findAll", query="SELECT t from Trainer t ORDER BY t.brand")
+	@NamedQuery(name="Trainer.findAll", query="SELECT t from Trainer t ORDER BY t.brand"),
+	@NamedQuery(name="Trainer.findByModel", query="SELECT t from Trainer t WHERE t.model = :model")
 })
 
 public class Trainer implements java.io.Serializable {

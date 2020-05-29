@@ -86,7 +86,7 @@ public class UserDAOTest extends BaseDAOTest {
     	Integer userId = 22;
     	userDAO.delete(userId);
     	
-    	Users user = userDAO.find(Users.class, userId);
+    	Users user = userDAO.get(userId);
     	assertNull(user);
     }
     
@@ -102,7 +102,7 @@ public class UserDAOTest extends BaseDAOTest {
     public void testListAllUsers() {
     	
     	List<Users> allUsers = userDAO.listAll();
-    	assertTrue(allUsers.size() > 0);
+    	assertFalse(allUsers.isEmpty());
     }
     
     @Test

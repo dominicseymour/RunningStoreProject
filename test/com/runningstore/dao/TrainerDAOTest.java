@@ -94,7 +94,7 @@ public class TrainerDAOTest extends BaseDAOTest {
 		Integer trainerId = 3;
     	trainerDAO.delete(trainerId);
     	
-    	Trainer trainer = trainerDAO.find(Trainer.class, trainerId);
+    	Trainer trainer = trainerDAO.get(trainerId);
     	assertNull(trainer);
 	}
 	
@@ -125,7 +125,25 @@ public class TrainerDAOTest extends BaseDAOTest {
 	public void testListAllTrainers() {
 		
 		List<Trainer> allTrainers = trainerDAO.listAll();
-		assertTrue(allTrainers.size() > 0);
+		assertFalse(allTrainers.isEmpty());
+	}
+	
+	@Test
+	public void testFindTrainerByModel() {
+		
+		String model = "Carbon X";
+		Trainer trainer = trainerDAO.findByModel(model);
+		
+		assertNotNull(trainer);
+	}
+	
+	@Test
+	public void testFindTrainerByModeNotFoundl() {
+		
+		String model = "Undefined";
+		Trainer trainer = trainerDAO.findByModel(model);
+		
+		assertNull(trainer);
 	}
 	
 	@AfterClass

@@ -11,6 +11,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -19,6 +21,10 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "trainer", catalog = "runningstoredb", uniqueConstraints = @UniqueConstraint(columnNames = "brand"))
+@NamedQueries({
+	@NamedQuery(name="Trainer.findAll", query="SELECT t from Trainer t ORDER BY t.brand")
+})
+
 public class Trainer implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;

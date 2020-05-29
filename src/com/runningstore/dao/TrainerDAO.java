@@ -36,8 +36,7 @@ public class TrainerDAO extends JpaDAO<Trainer> implements GenericDAO<Trainer> {
 
 	@Override
 	public List<Trainer> listAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return super.findWithNamedQuery("Trainer.findAll");
 	}
 
 	@Override

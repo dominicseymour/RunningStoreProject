@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -118,6 +119,13 @@ public class TrainerDAOTest extends BaseDAOTest {
 		Integer trainerId = 6;
 		Trainer trainer = trainerDAO.get(trainerId);
 		assertNull(trainer);
+	}
+	
+	@Test
+	public void testListAllTrainers() {
+		
+		List<Trainer> allTrainers = trainerDAO.listAll();
+		assertTrue(allTrainers.size() > 0);
 	}
 	
 	@AfterClass

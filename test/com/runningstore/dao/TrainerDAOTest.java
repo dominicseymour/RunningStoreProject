@@ -10,12 +10,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.runningstore.entity.Category;
 import com.runningstore.entity.Trainer;
+import com.runningstore.entity.Users;
 
 import junit.framework.Assert;
 
@@ -34,7 +37,7 @@ public class TrainerDAOTest extends BaseDAOTest {
 
 		Trainer newTrainer = new Trainer();
 		
-		Category category = new Category("Road");
+		Category category = new Category("Track");
 		category.setCategoryId(1);
 		newTrainer.setCategory(category);
 		
@@ -43,9 +46,9 @@ public class TrainerDAOTest extends BaseDAOTest {
 		newTrainer.setReleaseDate(releaseDate);
 		
 		newTrainer.setBrand("nike");
-		newTrainer.setModel("Vaporfly Next%");
-		newTrainer.setDescription("Carbon plate racing shoe");
-		newTrainer.setPrice(219.99f);
+		newTrainer.setModel("Track spike");
+		newTrainer.setDescription("Track racing shoe");
+		newTrainer.setPrice(89.99f);
 		
 		String imagePath = "/Users/dom/Desktop/images/trainers/vaporfly_next%.jpg"; 
 		byte[] imageBytes = Files.readAllBytes(Paths.get(imagePath));
@@ -82,6 +85,23 @@ public class TrainerDAOTest extends BaseDAOTest {
 		Trainer updatedTrainer = trainerDAO.update(trainer);
 		
 		assertEquals(trainer.getBrand(), updatedTrainer.getBrand());
+	}
+	
+	@Test
+	public void testDeleteTrainer() {
+		
+		Integer trainerId = 3;
+    	trainerDAO.delete(trainerId);
+    	
+    	Trainer trainer = trainerDAO.find(Trainer.class, trainerId);
+    	assertNull(trainer);
+	}
+	
+	@Test(expected = EntityNotFoundException.class)
+	public void testDeleteTrainerFail() {
+		
+		Integer trainerId = 0;
+    	trainerDAO.delete(trainerId);    	
 	}
 	
 	@AfterClass

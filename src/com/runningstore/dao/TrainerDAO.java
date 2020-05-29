@@ -30,9 +30,8 @@ public class TrainerDAO extends JpaDAO<Trainer> implements GenericDAO<Trainer> {
 	}
 
 	@Override
-	public void delete(Object id) {
-		// TODO Auto-generated method stub
-		
+	public void delete(Object trainerId) {
+		super.delete(Trainer.class, trainerId);		
 	}
 
 	@Override

@@ -24,9 +24,9 @@ public class TrainerDAO extends JpaDAO<Trainer> implements GenericDAO<Trainer> {
 	}
 
 	@Override
-	public Trainer get(Object id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Trainer get(Object trainerId) {
+		
+		return super.find(Trainer.class, trainerId);
 	}
 
 	@Override

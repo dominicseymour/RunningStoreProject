@@ -104,6 +104,22 @@ public class TrainerDAOTest extends BaseDAOTest {
     	trainerDAO.delete(trainerId);    	
 	}
 	
+	@Test
+	public void testGetTrainer() {
+		
+		Integer trainerId = 1;
+		Trainer trainer = trainerDAO.get(trainerId);
+		assertNotNull(trainer);
+	}
+	
+	@Test()
+	public void testGetTrainerNotFound() {
+		
+		Integer trainerId = 6;
+		Trainer trainer = trainerDAO.get(trainerId);
+		assertNull(trainer);
+	}
+	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		BaseDAOTest.tearDownAfterClass();

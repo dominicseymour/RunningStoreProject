@@ -14,8 +14,10 @@
 		</c:if>
 	</title>
 	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/jquery-ui.min.css">
 	<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>	
+	<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp"/>
@@ -67,7 +69,7 @@
 				<tr>
 					<td align="right">Release Date:</td>
 					<td align="left">
-						<input type="text" id="release_date" name="release_date" size="20" value="${trainer.releaseDate}">
+						<input type="text" id="release_date" name="release_date" value="${trainer.releaseDate}">
 					</td>
 				</tr>
 				<tr>
@@ -85,7 +87,7 @@
 				<tr>
 					<td align="right">Description::</td>
 					<td align="left">
-						<textarea rows="5" cols="50" name="desciption" id="description"></textarea>
+						<textarea rows="5" cols="50" name="description" id="description"></textarea>
 					</td>
 				</tr>
 				<tr> 
@@ -105,6 +107,9 @@
 <script type="text/javascript">
 
 	$(document).ready(function () {
+		
+		$( "#release_date" ).datepicker();
+		
 		$("#userForm").validate({
 			rules : {
 				email : {
@@ -137,5 +142,6 @@
 	});
 
 </script>
+
 
 </html>

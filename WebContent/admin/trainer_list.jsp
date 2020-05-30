@@ -16,7 +16,7 @@
 	<div align="center">
 		<h2 class="page_heading">Trainer Management</h2>
 	
-		<h3><a href="trainer_form.jsp">Create new Trainer</a></h3>
+		<h3><a href="new_trainer">Create new Trainer</a></h3>
 	</div>
 	
 	<c:if test="${message != null}">

@@ -9,7 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.runningstore.dao.CategoryDAO;
 import com.runningstore.dao.TrainerDAO;
+import com.runningstore.entity.Category;
 import com.runningstore.entity.Trainer;
 
 public class TrainerServices {
@@ -17,12 +19,14 @@ public class TrainerServices {
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	private TrainerDAO trainerDAO;
+	private CategoryDAO categoryDAO;
 	
 	public TrainerServices(EntityManager entityManager, HttpServletRequest request, HttpServletResponse response) {
 
 		this.request = request;
 		this.response = response;
-		trainerDAO = new TrainerDAO(entityManager);
+		this.trainerDAO = new TrainerDAO(entityManager);
+		this.categoryDAO = new CategoryDAO(entityManager);
 	}
 	
 	public void listTrainers(String message) throws ServletException, IOException {
@@ -42,6 +46,15 @@ public class TrainerServices {
 	public void listTrainers() throws ServletException, IOException {
 		
 		listTrainers(null);
+	}
+	
+	public void showNewTrainerForm() throws ServletException, IOException {
+		
+		List<Category> categoryList = categoryDAO.listAll();
+		request.setAttribute("categoryList", categoryList);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("trainer_form.jsp");
+		dispatcher.forward(request, response);
 	}
 	
 

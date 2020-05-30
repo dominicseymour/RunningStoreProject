@@ -1,5 +1,6 @@
 package com.runningstore.entity;
 
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 @Entity
@@ -37,6 +39,7 @@ public class Trainer implements java.io.Serializable {
 	private String model;
 	private String description;
 	private byte[] image;
+	private String base64Image;
 	private float price;
 	private Date releaseDate;
 	private Date lastUpdatedOn;
@@ -175,5 +178,17 @@ public class Trainer implements java.io.Serializable {
 	public void setOrderDetails(Set<OrderDetail> orderDetails) {
 		this.orderDetails = orderDetails;
 	}
+	
+	@Transient
+	public String getBase64Image() {
+		this.base64Image = Base64.getEncoder().encodeToString(this.image);
+		return this.base64Image;
+	}
 
+	@Transient
+	public void setBase64Image(String base64Image) {
+		this.base64Image = base64Image;
+	}
+	
+	
 }

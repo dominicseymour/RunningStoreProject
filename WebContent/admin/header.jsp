@@ -24,7 +24,7 @@
 		</div>
 
 		<div>
-			<a href="trainers">
+			<a href="list_trainers">
 				<img src="../images/trainer.png"/><br/>Trainers
 			</a>
 		</div>		

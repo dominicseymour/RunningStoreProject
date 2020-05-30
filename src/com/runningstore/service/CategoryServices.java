@@ -20,14 +20,12 @@ public class CategoryServices {
 
 	private HttpServletRequest request;
 	private HttpServletResponse response;
-	private EntityManager entityManager;
 	private CategoryDAO categoryDAO;
 
 	public CategoryServices(EntityManager entityManager, HttpServletRequest request, HttpServletResponse response) {
 
 		this.request = request;
 		this.response = response;
-		this.entityManager = entityManager;
 		categoryDAO = new CategoryDAO(entityManager);
 	}
 

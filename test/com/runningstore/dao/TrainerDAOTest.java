@@ -38,20 +38,20 @@ public class TrainerDAOTest extends BaseDAOTest {
 
 		Trainer newTrainer = new Trainer();
 		
-		Category category = new Category("Track");
+		Category category = new Category("Road");
 		category.setCategoryId(1);
 		newTrainer.setCategory(category);
 		
 		DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
-		Date releaseDate = dateFormat.parse("29/04/2019");
+		Date releaseDate = dateFormat.parse("01/09/2019");
 		newTrainer.setReleaseDate(releaseDate);
 		
-		newTrainer.setBrand("nike");
-		newTrainer.setModel("Track spike");
-		newTrainer.setDescription("Track racing shoe");
-		newTrainer.setPrice(89.99f);
+		newTrainer.setBrand("Hoka One One");
+		newTrainer.setModel("Carbon X");
+		newTrainer.setDescription("Carbon plate road shoe");
+		newTrainer.setPrice(169.99f);
 		
-		String imagePath = "/Users/dom/Desktop/images/trainers/vaporfly_next%.jpg"; 
+		String imagePath = "/Users/dom/Desktop/images/trainers/carbon_x.jpeg"; 
 		byte[] imageBytes = Files.readAllBytes(Paths.get(imagePath));
 		newTrainer.setImage(imageBytes);
 		
@@ -66,7 +66,7 @@ public class TrainerDAOTest extends BaseDAOTest {
 		Trainer trainer = new Trainer();
 		
 		Category category = new Category("Track");
-		category.setCategoryId(6);
+		category.setCategoryId(1);
 		trainer.setCategory(category);
 		
 		DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
@@ -78,7 +78,7 @@ public class TrainerDAOTest extends BaseDAOTest {
 		trainer.setDescription("Carbon plate racing shoe");
 		trainer.setPrice(159.99f);
 		
-		String imagePath = "/Users/dom/Desktop/images/trainers/vaporfly_next%.jpg"; 
+		String imagePath = "/Users/dom/Desktop/images/trainers/carbon_x.jpg"; 
 		byte[] imageBytes = Files.readAllBytes(Paths.get(imagePath));
 		trainer.setImage(imageBytes);
 		trainer.setTrainerId(1);
@@ -91,7 +91,7 @@ public class TrainerDAOTest extends BaseDAOTest {
 	@Test
 	public void testDeleteTrainer() {
 		
-		Integer trainerId = 3;
+		Integer trainerId = 5;
     	trainerDAO.delete(trainerId);
     	
     	Trainer trainer = trainerDAO.get(trainerId);

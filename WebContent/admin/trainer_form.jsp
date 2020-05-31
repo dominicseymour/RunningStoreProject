@@ -15,7 +15,7 @@
 	</title>
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="../css/jquery-ui.min.css">
-	<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>	
 	<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
 </head>
@@ -75,7 +75,8 @@
 				<tr>
 					<td align="right">Trainer Image:</td>
 					<td align="left">
-						<input type="file" id="trainer_image" name="trainer_image">
+						<input type="file" id="trainer_image" name="trainer_image" size="20"/><br/>
+						<img id="thumbnail" alt="Image Preview" style="width : 20%; margin-top : 10px"/>
 					</td>
 				</tr>
 				<tr>
@@ -106,9 +107,13 @@
 
 <script type="text/javascript">
 
-	$(document).ready(function () {
+		$(document).ready(function() {
 		
-		$( "#release_date" ).datepicker();
+		$( '#release_date' ).datepicker();
+		
+		$( '#trainer_image' ).change(function () {
+			showImageThumbnail(this);
+		});
 		
 		$("#userForm").validate({
 			rules : {
@@ -140,6 +145,20 @@
 		});
 		
 	});
+	
+	function showImageThumbnail(fileInput) {
+		
+		var file = fileInput.files[0];
+		
+		var reader = new FileReader();
+		
+		reader.onload = function(e) {
+			$('#thumbnail').attr('src', e.target.result);
+		};
+		
+		reader.readAsDataURL(file);
+		
+		};
 
 </script>
 

@@ -4,7 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<meta charset="UTF-8">
+
 	<title>
 		<c:if test="${trainer != null}">
 			Edit Trainer
@@ -13,11 +15,14 @@
 			Create New Trainer
 		</c:if>
 	</title>
-	<link rel="stylesheet" href="../css/style.css">
+
+	<link rel="stylesheet" href="../css/style.css" >
 	<link rel="stylesheet" href="../css/jquery-ui.min.css">
+
 	<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>	
+	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+
 </head>
 <body>
 	<jsp:directive.include file="header.jsp"/>
@@ -41,6 +46,7 @@
 		<c:if test="${trainer == null}">
 			<form action="create_trainer" method="post" id="trainerForm">
 		</c:if>
+		
 			<table class="form">
 				<tr>
 					<td align="right">Category:</td>
@@ -54,6 +60,7 @@
 						</select>
 					</td>
 				</tr>
+			
 				<tr>
 					<td align="right">Brand:</td>
 					<td align="left">
@@ -69,13 +76,13 @@
 				<tr>
 					<td align="right">Release Date:</td>
 					<td align="left">
-						<input type="text" id="release_date" name="release_date" value="${trainer.releaseDate}">
+						<input type="text" id="releaseDate" name="releaseDate" value="${trainer.releaseDate}">
 					</td>
 				</tr>
 				<tr>
 					<td align="right">Trainer Image:</td>
 					<td align="left">
-						<input type="file" id="trainer_image" name="trainer_image" size="20"/><br/>
+						<input type="file" id="trainerImage" name="trainerImage" size="20"/><br/>
 						<img id="thumbnail" alt="Image Preview" style="width : 20%; margin-top : 10px"/>
 					</td>
 				</tr>
@@ -92,10 +99,9 @@
 					</td>
 				</tr>
 				<tr> 
-					<td colspan="2" align="center"> </br>
-						<button type="submit">Save</button>
-						&nbsp;&nbsp;&nbsp;
-						<button type="button" id="cancelButton">Cancel</button>
+					<td colspan="2" align="center">
+						<button type="submit">Save</button>&nbsp;&nbsp;&nbsp;
+						<button id="buttonCancel">Cancel</button>
 					</td>
 				</tr>								
 			</table>
@@ -107,37 +113,37 @@
 
 <script type="text/javascript">
 
-		$(document).ready(function() {
+		$(document).ready(function () {
 		
-		$( '#release_date' ).datepicker();
+		$( '#releaseDate' ).datepicker();
 		
-		$( '#trainer_image' ).change(function () {
+		$( '#trainerImage' ).change(function () {
 			showImageThumbnail(this);
 		});
 		
-		$("#userForm").validate({
+		$( '#trainerForm' ).validate({
+			
 			rules : {
-				email : {
-					required : true,
-					email : true
-				},
-				
-				fullname : "required",
-				
-				<c:if test="${user == null}">
-				password: "required"
-				</c:if>
+					
+				brand : "required",
+				model : "required",				
+				releaseDate : "required",
+				trainerImage : "required",				
+				price : "required",
+				description : "required"
+	
 			},
 			
 			messages : {
-				email : {
-					required : "Please enter email",
-					email: "Please enter a valid email"
-				},
-
-				fullname : "Please enter fullname",
-				password : "Please enter password"
-			},
+	
+				brand : "Please enter brand",	
+				model : "Please enter model",
+				releaseDate : "Please enter release date",
+				trainerImage : "Please enter trainer image",
+				price : "Please enter price",
+				description : "Please enter description"
+				
+			}
 		});
 		
 		$("button#cancelButton").click(function() {
